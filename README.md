@@ -3,7 +3,7 @@
 Problem:  Rapid7's jenkins-appspider plugin for Jenkins will not run on Windows implementations - confirmed through Rapid7 Support.
 
 ### Project Overview:  
-Call scripts from Jenkins instance, located on our PDC server (10.106.24.22), that reach out to ASE’s API (on server in Azure MSS Subscription), that then requests ASE scan engine(s), depending upon architecture, to perform the application vulnerability scan and return various reports (xml, zip, crawled links, etc.).
+Call scripts from Jenkins instance, that reachs out to ASE’s API, that then requests ASE scan engine(s), location and number depending upon architecture, to perform the application vulnerability scan and return various reports (xml, zip, crawled links, etc.).
 
 ### Project Future State:  
 Create further automation scripts that: 
