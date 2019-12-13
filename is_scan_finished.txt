@@ -1,0 +1,6 @@
+{
+    "Result": true,
+    "IsSuccess": true,
+    "Reason": null,
+    "ErrorMessage": null
+}

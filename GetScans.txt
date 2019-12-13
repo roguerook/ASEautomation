@@ -1,0 +1,107 @@
+{
+    "Scans": [
+        {
+            "Targets": [
+                {
+                    "Id": "00761706-e05e-444e-b076-51347e6c2bb5",
+                    "Host": "www.webscantest.com"
+                }
+            ],
+            "Id": "96033854-814c-4c5b-a8fc-6e357fa764da",
+            "EngineGroupId": "5d2481f4-07a5-4ed0-8631-4a58d890104f",
+            "EngineId": "c663fb89-8b70-474d-93a3-3ac337047e72",
+            "Token": "9293f2b11a8844c7a91ed1d9cd788685",
+            "Status": 32,
+            "StartTime": "2019-09-26T16:40:29.49",
+            "WindowScanStart": "2019-09-26T16:40:23.087",
+            "WindowScanStop": null,
+            "StartedBy": "0311ee4e-e43e-4c76-98b3-c6885218dcc6",
+            "StoppedTime": null,
+            "CompletionTime": "2019-09-26T18:27:37.843",
+            "IsApproveRequired": false,
+            "IsMonitoring": false,
+            "IsUploaded": false,
+            "IsImported": true,
+            "ConfigId": "dc12468d-5e5f-4eb1-884c-bcc324a7b0e6",
+            "SubStatus": null
+        },
+        {
+            "Targets": [
+                {
+                    "Id": "00761706-e05e-444e-b076-51347e6c2bb5",
+                    "Host": "www.webscantest.com"
+                }
+            ],
+            "Id": "c67eef62-6a0a-40bf-a63a-c0d3579fed06",
+            "EngineGroupId": "5d2481f4-07a5-4ed0-8631-4a58d890104f",
+            "EngineId": "c663fb89-8b70-474d-93a3-3ac337047e72",
+            "Token": "99694ad735b34fd6be68d15c5f3809d3",
+            "Status": 32,
+            "StartTime": "2019-09-24T19:21:23.12",
+            "WindowScanStart": "2019-09-24T19:21:18.627",
+            "WindowScanStop": null,
+            "StartedBy": "0311ee4e-e43e-4c76-98b3-c6885218dcc6",
+            "StoppedTime": null,
+            "CompletionTime": "2019-09-24T21:08:54.343",
+            "IsApproveRequired": false,
+            "IsMonitoring": false,
+            "IsUploaded": false,
+            "IsImported": true,
+            "ConfigId": "dc12468d-5e5f-4eb1-884c-bcc324a7b0e6",
+            "SubStatus": null
+        },
+        {
+            "Targets": [
+                {
+                    "Id": "00761706-e05e-444e-b076-51347e6c2bb5",
+                    "Host": "www.webscantest.com"
+                }
+            ],
+            "Id": "e2da957d-4997-48e7-8ba6-c2d4842acaef",
+            "EngineGroupId": "5d2481f4-07a5-4ed0-8631-4a58d890104f",
+            "EngineId": "c663fb89-8b70-474d-93a3-3ac337047e72",
+            "Token": "f249d5f68e0e4272805ed85abe62e80e",
+            "Status": 32,
+            "StartTime": "2019-09-24T17:50:46.533",
+            "WindowScanStart": "2019-09-24T17:50:40.933",
+            "WindowScanStop": null,
+            "StartedBy": "0311ee4e-e43e-4c76-98b3-c6885218dcc6",
+            "StoppedTime": null,
+            "CompletionTime": "2019-09-24T17:52:30.223",
+            "IsApproveRequired": false,
+            "IsMonitoring": false,
+            "IsUploaded": false,
+            "IsImported": true,
+            "ConfigId": "dc12468d-5e5f-4eb1-884c-bcc324a7b0e6",
+            "SubStatus": null
+        },
+        {
+            "Targets": [
+                {
+                    "Id": "00761706-e05e-444e-b076-51347e6c2bb5",
+                    "Host": "www.webscantest.com"
+                }
+            ],
+            "Id": "9e1af4ae-4609-4ffa-b1d8-d29e3db9ea49",
+            "EngineGroupId": "5d2481f4-07a5-4ed0-8631-4a58d890104f",
+            "EngineId": "c663fb89-8b70-474d-93a3-3ac337047e72",
+            "Token": "9494056bf3564567932ce35575bdbadf",
+            "Status": 32,
+            "StartTime": "2019-09-24T18:02:47.743",
+            "WindowScanStart": "2019-09-24T18:02:43.98",
+            "WindowScanStop": null,
+            "StartedBy": "def82e1a-1adc-4c3d-b37d-f5f46a87613f",
+            "StoppedTime": null,
+            "CompletionTime": "2019-09-24T18:04:26.307",
+            "IsApproveRequired": false,
+            "IsMonitoring": false,
+            "IsUploaded": false,
+            "IsImported": true,
+            "ConfigId": "dc12468d-5e5f-4eb1-884c-bcc324a7b0e6",
+            "SubStatus": null
+        }
+    ],
+    "IsSuccess": true,
+    "Reason": null,
+    "ErrorMessage": null
+}

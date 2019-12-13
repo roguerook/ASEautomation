@@ -1,0 +1,3134 @@
+{
+	"info": {
+		"name": "Appspider Enterprise",
+		"_postman_id": "4cb648dc-8a70-603c-307f-23cf7388a574",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "1-Authentication Operations",
+			"item": [
+				{
+					"name": "/Authentication/Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable(\"Token\", jsonData.Token);"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"{{Uname}}\",\n    \"password\": \"{{Password}}\"\n}"
+						},
+						"url": {
+							"raw": "{{Protocol}}://{{Server}}/AppSpiderEnterprise/rest/v1/Authentication/Login",
+							"protocol": "{{Protocol}}",
+							"host": [
+								"{{Server}}"
+							],
+							"path": [
+								"AppSpiderEnterprise",
+								"rest",
+								"v1",
+								"Authentication",
+								"Login"
+							]
+						},
+						"description": "User Account Login (logs you into a \"Client\")"
+					},
+					"response": []
+				},
+				{
+					"name": "/Authentication/Login - SA",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable(\"Token-Admin\", jsonData.Token);"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"{{Uname-Admin}}\",\n    \"password\": \"{{Password-Admin}}\"\n}"
+						},
+						"url": {
+							"raw": "{{Protocol}}://{{Server}}/{{Endpoint}}/rest/v1/Authentication/Login",
+							"protocol": "{{Protocol}}",
+							"host": [
+								"{{Server}}"
+							],
+							"path": [
+								"{{Endpoint}}",
+								"rest",
+								"v1",
+								"Authentication",
+								"Login"
+							]
+						},
+						"description": "User Account Login (logs you in as an SA)"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "2-Scan Engine Operations",
+			"description": "This section describes API methods for managing Scan Engines. Note that admin credentials are required to work with scan engines",
+			"item": [
+				{
+					"name": "/Engine/GetEngines",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic {{Token-Admin}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{Protocol}}://{{Server}}/{{Endpoint}}/rest/v1/Engine/GetEngines",
+							"protocol": "{{Protocol}}",
+							"host": [
+								"{{Server}}"
+							],
+							"path": [
+								"{{Endpoint}}",
+								"rest",
+								"v1",
+								"Engine",
+								"GetEngines"
+							]
+						},
+						"description": "Retrieves the list of scan engines"
+					},
+					"response": []
+				},
+				{
+					"name": "/Engine/SaveEngine",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic {{Token-Admin}}"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "id",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "url",
+									"value": "http://InsertServer/AppSpiderEntScanEngine/default.asmx",
+									"type": "text"
+								},
+								{
+									"key": "virtualName",
+									"value": "InsertVirtualName",
+									"type": "text"
+								},
+								{
+									"key": "login",
+									"value": "InsertUserName",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "InsertPassword",
+									"type": "text"
+								},
+								{
+									"key": "notes",
+									"value": "null",
+									"type": "text"
+								},
+								{
+									"key": "donotupdate",
+									"value": "false",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{Protocol}}://{{Server}}/{{Endpoint}}/rest/v1/Engine/SaveEngine",
+							"protocol": "{{Protocol}}",
+							"host": [
+								"{{Server}}"
+							],
+							"path": [
+								"{{Endpoint}}",
+								"rest",
+								"v1",
+								"Engine",
+								"SaveEngine"
+							]
+						},
+						"description": "Creates or updates a scan engine"
+					},
+					"response": []
+				},
+				{
+					"name": "/Engine/DeleteEngine",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic {{Token-Admin}}"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "id",
+									"value": "\"33cae0c1-89cf-4f42-90a9-62ba1f82cabe\"",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{Protocol}}://{{Server}}/{{Endpoint}}/rest/v1/Engine/DeleteEngine",
+							"protocol": "{{Protocol}}",
+							"host": [
+								"{{Server}}"
+							],
+							"path": [
+								"{{Endpoint}}",
+								"rest",
+								"v1",
+								"Engine",
+								"DeleteEngine"
+							]
+						},
+						"description": "Deletes one or more scan engines"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "3-Scan Engine Group Operations",
+			"description": "This section describes API methods for managing Scan Engine Groups. Not that admin credentials are required to work with scan engines",
+			"item": [
+				{
+					"name": "/EngineGroup/GetAllEngineGroups",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic {{Token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{Protocol}}://{{Server}}/{{Endpoint}}/rest/v1/EngineGroup/GetAllEngineGroups",
+							"protocol": "{{Protocol}}",
+							"host": [
+								"{{Server}}"
+							],
+							"path": [
+								"{{Endpoint}}",
+								"rest",
+								"v1",
+								"EngineGroup",
+								"GetAllEngineGroups"
+							]
+						},
+						"description": "Retrieves the list of scan engine groups"
+					},
+					"response": []
+				},
+				{
+					"name": "/EngineGroup/GetEngineGroupsForClient",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic {{Token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{Protocol}}://{{Server}}/{{Endpoint}}/rest/v1/EngineGroup/GetEngineGroupsForClient",
+							"protocol": "{{Protocol}}",
+							"host": [
+								"{{Server}}"
+							],
+							"path": [
+								"{{Endpoint}}",
+								"rest",
+								"v1",
+								"EngineGroup",
+								"GetEngineGroupsForClient"
+							]
+						},
+						"description": "Retrieves the list of scan engine for groups for client. Note: user permissions required to retrieve the list of scan engine groups"
+					},
+					"response": []
+				},
+				{
+					"name": "/EngineGroup/SaveEngineGroup",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic {{Token}}"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "id",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "Postman-Test",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "test123",
+									"type": "text"
+								},
+								{
+									"key": "monitoring",
+									"value": "false",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{Protocol}}://{{Server}}/{{Endpoint}}/rest/v1/EngineGroup/SaveEngineGroup",
+							"protocol": "{{Protocol}}",
+							"host": [
+								"{{Server}}"
+							],
+							"path": [
+								"{{Endpoint}}",
+								"rest",
+								"v1",
+								"EngineGroup",
+								"SaveEngineGroup"
+							]
+						},
+						"description": "Creates or updates a scan engine group"
+					},
+					"response": []
+				},
+				{
+					"name": "/EngineGroup/DeleteEngineGroup",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic {{Token}}"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "ids",
+									"value": "46fc948d-4021-4969-b34f-4b2f1abedb3b",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{Protocol}}://{{Server}}/{{Endpoint}}/rest/v1/EngineGroup/DeleteEngineGroup",
+							"protocol": "{{Protocol}}",
+							"host": [
+								"{{Server}}"
+							],
+							"path": [
+								"{{Endpoint}}",
+								"rest",
+								"v1",
+								"EngineGroup",
+								"DeleteEngineGroup"
+							]
+						},
+						"description": "Deletes a scan engine group"
+					},
+					"response": []
+				},
+				{
+					"name": "/EngineGroup/AddEngineToGroup",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic {{Token}}"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "groupId",
+									"value": "insert Group ID",
+									"type": "text"
+								},
+								{
+									"key": "engineId",
+									"value": "Insert Engine ID for the engine you would like to add",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{Protocol}}://{{Server}}/{{Endpoint}}/rest/v1/EngineGroup/AddEngineToGroup",
+							"protocol": "{{Protocol}}",
+							"host": [
+								"{{Server}}"
+							],
+							"path": [
+								"{{Endpoint}}",
+								"rest",
+								"v1",
+								"EngineGroup",
+								"AddEngineToGroup"
+							]
+						},
+						"description": "Adds a scan engine to a scan engine group"
+					},
+					"response": []
+				},
+				{
+					"name": "/EngineGroup/DeleteEngineFromGroup",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic {{Token}}"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "groupId",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "engineId",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{Protocol}}://{{Server}}/{{Endpoint}}/rest/v1/EngineGroup/DeleteEngineFromGroup",
+							"protocol": "{{Protocol}}",
+							"host": [
+								"{{Server}}"
+							],
+							"path": [
+								"{{Endpoint}}",
+								"rest",
+								"v1",
+								"EngineGroup",
+								"DeleteEngineFromGroup"
+							]
+						},
+						"description": "Deletes a scan engine from a scan engine group"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "4-Scan Configuration Operations",
+			"description": "This section describes API methods for managing Scan Configurations. Note that the user should have \"Config Manager\" permissions to work with configs",
+			"item": [
+				{
+					"name": "/Config/SaveConfig",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic {{Token}}"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "Config",
+									"value": "Insert JSON",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{Protocol}}://{{Server}}/{{Endpoint}}/rest/v1/Config/SaveConfig",
+							"protocol": "{{Protocol}}",
+							"host": [
+								"{{Server}}"
+							],
+							"path": [
+								"{{Endpoint}}",
+								"rest",
+								"v1",
+								"Config",
+								"SaveConfig"
+							]
+						},
+						"description": "Creates or updates a scan configuration\n\nJSON Example:\n\n{   \"DefendEnabled\": false,     \"MonitoringDelay\": 0,     \"MonitoringTriggerScan\": false,     \"Xml\": \"<ScanConfig>...</ScanConfig>\",     \"Id\": null,     \"Name\": \"Webscantest\",     \"ClientId\": \"4b3c1f62-8a19-4c81-a9d8-061aeb758ddd\",     \"EngineGroupId\": \"92bfcd05-239a-4a90-ade7-5b637e3cb877\",     \"Monitoring\": false,     \"IsApproveRequired\": false }"
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteConfigs ",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic {{Token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"configIds\":[\"b86418a4-7be2-48c4-9312-ca7cd8098b17\"]\n}"
+						},
+						"url": {
+							"raw": "{{Protocol}}://{{Server}}/{{Endpoint}}/rest/v1/Config/DeleteConfigs",
+							"protocol": "{{Protocol}}",
+							"host": [
+								"{{Server}}"
+							],
+							"path": [
+								"{{Endpoint}}",
+								"rest",
+								"v1",
+								"Config",
+								"DeleteConfigs"
+							]
+						},
+						"description": "Deletes a scan config"
+					},
+					"response": []
+				},
+				{
+					"name": "/Config/GetConfigs",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic {{Token}}"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "configIds",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "deleteReport",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "deletePendingScan",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{Protocol}}://{{Server}}/{{Endpoint}}/rest/v1/Config/GetConfigs",
+							"protocol": "{{Protocol}}",
+							"host": [
+								"{{Server}}"
+							],
+							"path": [
+								"{{Endpoint}}",
+								"rest",
+								"v1",
+								"Config",
+								"GetConfigs"
+							]
+						},
+						"description": "Retrieves scan configs for the client"
+					},
+					"response": []
+				},
+				{
+					"name": "/Config/GetConfig",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic {{Token}}"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "configIds",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "deleteReport",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "deletePendingScan",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{Protocol}}://{{Server}}/{{Endpoint}}/rest/v1/Config/GetConfig?id=insert Config Id",
+							"protocol": "{{Protocol}}",
+							"host": [
+								"{{Server}}"
+							],
+							"path": [
+								"{{Endpoint}}",
+								"rest",
+								"v1",
+								"Config",
+								"GetConfig"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "insert Config Id",
+									"equals": true
+								}
+							]
+						},
+						"description": "Retrieves a specified scan config"
+					},
+					"response": []
+				},
+				{
+					"name": "/Config/GetAttachment",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic {{Token}}"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "configIds",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "deleteReport",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "deletePendingScan",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{Protocol}}://{{Server}}/{{Endpoint}}/rest/v1/Config/GetAttachment?configid=insert config id&fileName=insert fileName to retrieve&fileType=insert file type",
+							"protocol": "{{Protocol}}",
+							"host": [
+								"{{Server}}"
+							],
+							"path": [
+								"{{Endpoint}}",
+								"rest",
+								"v1",
+								"Config",
+								"GetAttachment"
+							],
+							"query": [
+								{
+									"key": "configid",
+									"value": "insert config id",
+									"equals": true
+								},
+								{
+									"key": "fileName",
+									"value": "insert fileName to retrieve",
+									"equals": true
+								},
+								{
+									"key": "fileType",
+									"value": "insert file type",
+									"equals": true
+								}
+							]
+						},
+						"description": "Retrieves auxiliary files (such as macro, traffic recording, etc), referenced in the scan config\n\nfileType:\nValues are: \"Authentication\", \"Certificate\", \"Crawling\", \"Selenium\", \"Traffic\", \"Wsdl\""
+					},
+					"response": []
+				},
+				{
+					"name": "/Config/GetAttachments",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic {{Token}}"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "configIds",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "deleteReport",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "deletePendingScan",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{Protocol}}://{{Server}}/{{Endpoint}}/rest/v1/Config/GetAttachments?configId=insert config Id",
+							"protocol": "{{Protocol}}",
+							"host": [
+								"{{Server}}"
+							],
+							"path": [
+								"{{Endpoint}}",
+								"rest",
+								"v1",
+								"Config",
+								"GetAttachments"
+							],
+							"query": [
+								{
+									"key": "configId",
+									"value": "insert config Id",
+									"equals": true
+								}
+							]
+						},
+						"description": "Retrieves all auxiliary files (such as macro, traffic recording, etc), referenced in the scan configuration."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "5-Blackout Operations",
+			"description": "This section describes API methods for managing Blackouts. Note that the user should have \"Blackout Manager\" permissions to work with blackouts",
+			"item": [
+				{
+					"name": "/Blackout/GetBlackouts",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic {{Token}}"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "configIds",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "deleteReport",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "deletePendingScan",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{Protocol}}://{{Server}}/{{Endpoint}}/rest/v1/Blackout/GetBlackouts",
+							"protocol": "{{Protocol}}",
+							"host": [
+								"{{Server}}"
+							],
+							"path": [
+								"{{Endpoint}}",
+								"rest",
+								"v1",
+								"Blackout",
+								"GetBlackouts"
+							]
+						},
+						"description": "Retrieves the blackout list for the client"
+					},
+					"response": []
+				},
+				{
+					"name": "SaveBlackout",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic {{Token}}"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "id",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "Postman-Test",
+									"type": "text"
+								},
+								{
+									"key": "startTime",
+									"value": "2016-09-18T20:30:00",
+									"type": "text"
+								},
+								{
+									"key": "stopTime",
+									"value": "2016-09-19T09:00:00",
+									"type": "text"
+								},
+								{
+									"key": "targetHost",
+									"value": "www.webscantest.com",
+									"type": "text"
+								},
+								{
+									"key": "isRecurring",
+									"value": "true",
+									"type": "text"
+								},
+								{
+									"key": "recurrence",
+									"value": "{          \"End\": null,         \"Type\": 0,         \"DuringWeekday\": 127,         \"Repeat\": 1,         \"DayNumber\": 1,         \"WeekOfMonth\": 1,         \"Month\": 1,         \"OccurrenceCount\": 1,         \"Range\": 0  }",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{Protocol}}://{{Server}}/{{Endpoint}}/rest/v1/Blackout/SaveBlackout",
+							"protocol": "{{Protocol}}",
+							"host": [
+								"{{Server}}"
+							],
+							"path": [
+								"{{Endpoint}}",
+								"rest",
+								"v1",
+								"Blackout",
+								"SaveBlackout"
+							]
+						},
+						"description": "Creates or updates a blackout"
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteBlackouts",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic {{Token}}"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "blackoutIds",
+									"value": "2948dff0-62ac-4570-8b0e-2be67b66792e",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{Protocol}}://{{Server}}/{{Endpoint}}/rest/v1/Blackout/DeleteBlackouts",
+							"protocol": "{{Protocol}}",
+							"host": [
+								"{{Server}}"
+							],
+							"path": [
+								"{{Endpoint}}",
+								"rest",
+								"v1",
+								"Blackout",
+								"DeleteBlackouts"
+							]
+						},
+						"description": "Removes a blackout"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "6-Scan Management",
+			"description": "This section describes API methods for managing scan execution. Note that the user should have \"Scan Runner\" permissions to work with scans",
+			"item": [
+				{
+					"name": "/Scan/GetScans",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic {{Token}}"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "configId",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "configName",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{Protocol}}://{{Server}}/AppSpiderEnterprise/rest/v1/Scan/GetScans",
+							"protocol": "{{Protocol}}",
+							"host": [
+								"{{Server}}"
+							],
+							"path": [
+								"AppSpiderEnterprise",
+								"rest",
+								"v1",
+								"Scan",
+								"GetScans"
+							]
+						},
+						"description": "Retrieves the scans list for the client"
+					},
+					"response": []
+				},
+				{
+					"name": "/Scan/RunScan",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic {{Token}}"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "configId",
+									"value": "insert config id",
+									"type": "text"
+								},
+								{
+									"key": "configName",
+									"value": "insert config name",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{Protocol}}://{{Server}}/{{Endpoint}}/rest/v1/Scan/RunScan",
+							"protocol": "{{Protocol}}",
+							"host": [
+								"{{Server}}"
+							],
+							"path": [
+								"{{Endpoint}}",
+								"rest",
+								"v1",
+								"Scan",
+								"RunScan"
+							]
+						},
+						"description": "Start a scan. One of parameters should be provided to start scan."
+					},
+					"response": []
+				},
+				{
+					"name": "/Scan/CancelScan",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic {{Token}}"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "scanId",
+									"value": "insert scan id",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{Protocol}}://{{Server}}/{{Endpoint}}/rest/v1/Scan/CancelScan",
+							"protocol": "{{Protocol}}",
+							"host": [
+								"{{Server}}"
+							],
+							"path": [
+								"{{Endpoint}}",
+								"rest",
+								"v1",
+								"Scan",
+								"CancelScan"
+							]
+						},
+						"description": "Cancels “Starting” or “Waiting for Cloud” scan "
+					},
+					"response": []
+				},
+				{
+					"name": "/Scan/PauseScan",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic {{Token}}"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "scanId",
+									"value": "insert scan id",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{Protocol}}://{{Server}}/{{Endpoint}}/rest/v1/Scan/PauseScan",
+							"protocol": "{{Protocol}}",
+							"host": [
+								"{{Server}}"
+							],
+							"path": [
+								"{{Endpoint}}",
+								"rest",
+								"v1",
+								"Scan",
+								"PauseScan"
+							]
+						},
+						"description": "Pauses a running scan "
+					},
+					"response": []
+				},
+				{
+					"name": "/Scan/ResumeScan",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic {{Token}}"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "scanId",
+									"value": "insert scan id",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{Protocol}}://{{Server}}/{{Endpoint}}/rest/v1/Scan/ResumeScan",
+							"protocol": "{{Protocol}}",
+							"host": [
+								"{{Server}}"
+							],
+							"path": [
+								"{{Endpoint}}",
+								"rest",
+								"v1",
+								"Scan",
+								"ResumeScan"
+							]
+						},
+						"description": "Resumes a paused scan "
+					},
+					"response": []
+				},
+				{
+					"name": "/Scan/StopScan",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic {{Token}}"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "scanId",
+									"value": "insert scan id",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{Protocol}}://{{Server}}/{{Endpoint}}/rest/v1/Scan/StopScan",
+							"protocol": "{{Protocol}}",
+							"host": [
+								"{{Server}}"
+							],
+							"path": [
+								"{{Endpoint}}",
+								"rest",
+								"v1",
+								"Scan",
+								"StopScan"
+							]
+						},
+						"description": "Stops a running scan "
+					},
+					"response": []
+				},
+				{
+					"name": "/Scan/PauseAllScans",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic {{Token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{Protocol}}://{{Server}}/{{Endpoint}}/rest/v1/Scan/PauseAllScans",
+							"protocol": "{{Protocol}}",
+							"host": [
+								"{{Server}}"
+							],
+							"path": [
+								"{{Endpoint}}",
+								"rest",
+								"v1",
+								"Scan",
+								"PauseAllScans"
+							]
+						},
+						"description": "Pauses all running scans for the client"
+					},
+					"response": []
+				},
+				{
+					"name": "/Scan/ResumeAllScans",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "configId",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "configName",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{Protocol}}://{{Server}}/{{Endpoint}}/rest/v1/Scan/ResumeAllScans",
+							"protocol": "{{Protocol}}",
+							"host": [
+								"{{Server}}"
+							],
+							"path": [
+								"{{Endpoint}}",
+								"rest",
+								"v1",
+								"Scan",
+								"ResumeAllScans"
+							]
+						},
+						"description": "Start a scan. One of parameters should be provided to start scan."
+					},
+					"response": []
+				},
+				{
+					"name": "/Scan/StopAllScans",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic {{Token}}"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "configId",
+									"value": "insert config id",
+									"type": "text"
+								},
+								{
+									"key": "configName",
+									"value": "Insert config name",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{Protocol}}://{{Server}}/{{Endpoint}}/rest/v1/Scan/StopAllScans",
+							"protocol": "{{Protocol}}",
+							"host": [
+								"{{Server}}"
+							],
+							"path": [
+								"{{Endpoint}}",
+								"rest",
+								"v1",
+								"Scan",
+								"StopAllScans"
+							]
+						},
+						"description": "Start a scan. One of parameters should be provided to start scan."
+					},
+					"response": []
+				},
+				{
+					"name": "/Scan/CancelAllScans",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic {{Token}}"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "configId",
+									"value": "insert config id",
+									"type": "text"
+								},
+								{
+									"key": "configName",
+									"value": "Insert config name",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{Protocol}}://{{Server}}/{{Endpoint}}/rest/v1/Scan/CancelAllScans",
+							"protocol": "{{Protocol}}",
+							"host": [
+								"{{Server}}"
+							],
+							"path": [
+								"{{Endpoint}}",
+								"rest",
+								"v1",
+								"Scan",
+								"CancelAllScans"
+							]
+						},
+						"description": "Start a scan. One of parameters should be provided to start scan."
+					},
+					"response": []
+				},
+				{
+					"name": "/Scan/GetScanStatus",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic {{Token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{Protocol}}://{{Server}}/{{Endpoint}}/rest/v1/Scan/GetScanStatus?scanid=insert scan id",
+							"protocol": "{{Protocol}}",
+							"host": [
+								"{{Server}}"
+							],
+							"path": [
+								"{{Endpoint}}",
+								"rest",
+								"v1",
+								"Scan",
+								"GetScanStatus"
+							],
+							"query": [
+								{
+									"key": "scanid",
+									"value": "insert scan id",
+									"equals": true
+								}
+							]
+						},
+						"description": "Retrieves the scan status represented by a string"
+					},
+					"response": []
+				},
+				{
+					"name": "/Scan/IsScanActive",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic {{Token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{Protocol}}://{{Server}}/{{Endpoint}}/rest/v1/Scan/IsScanActive?scanId=insert scan id",
+							"protocol": "{{Protocol}}",
+							"host": [
+								"{{Server}}"
+							],
+							"path": [
+								"{{Endpoint}}",
+								"rest",
+								"v1",
+								"Scan",
+								"IsScanActive"
+							],
+							"query": [
+								{
+									"key": "scanId",
+									"value": "insert scan id",
+									"equals": true
+								}
+							]
+						},
+						"description": "Tests whether the specified scan is active"
+					},
+					"response": []
+				},
+				{
+					"name": "/Scan/IsScanFinished",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic {{Token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{Protocol}}://{{Server}}/{{Endpoint}}/rest/v1/Scan/IsScanFinished?scanId=insert scan id",
+							"protocol": "{{Protocol}}",
+							"host": [
+								"{{Server}}"
+							],
+							"path": [
+								"{{Endpoint}}",
+								"rest",
+								"v1",
+								"Scan",
+								"IsScanFinished"
+							],
+							"query": [
+								{
+									"key": "scanId",
+									"value": "insert scan id",
+									"equals": true
+								}
+							]
+						},
+						"description": "Tests whether the specified scan was completed"
+					},
+					"response": []
+				},
+				{
+					"name": "/Scan/HasReport",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic {{Token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{Protocol}}://{{Server}}/{{Endpoint}}/rest/v1/Scan/HasReport?scanId=insert scan id",
+							"protocol": "{{Protocol}}",
+							"host": [
+								"{{Server}}"
+							],
+							"path": [
+								"{{Endpoint}}",
+								"rest",
+								"v1",
+								"Scan",
+								"HasReport"
+							],
+							"query": [
+								{
+									"key": "scanId",
+									"value": "insert scan id",
+									"equals": true
+								}
+							]
+						},
+						"description": "Tests whether the specified scan has a report"
+					},
+					"response": []
+				},
+				{
+					"name": "/Scan/GetScanErrors",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic {{Token}}"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "scanid",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{Protocol}}://{{Server}}/{{Endpoint}}/rest/v1/Report/GetScanErrors?scanid=insert scan id",
+							"protocol": "{{Protocol}}",
+							"host": [
+								"{{Server}}"
+							],
+							"path": [
+								"{{Endpoint}}",
+								"rest",
+								"v1",
+								"Report",
+								"GetScanErrors"
+							],
+							"query": [
+								{
+									"key": "scanid",
+									"value": "insert scan id",
+									"equals": true
+								}
+							]
+						},
+						"description": "Gets scan error log"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "7-Report Management",
+			"description": "This section describes API methods for managing report execution. Note that the user should have \"Report Manager\" permissions to work with scans",
+			"item": [
+				{
+					"name": "/Report/ImportStandardReport",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic {{Token}}"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "scanId",
+									"value": "insert scan id",
+									"type": "text"
+								},
+								{
+									"key": "reportData",
+									"value": "",
+									"type": "file"
+								},
+								{
+									"key": "configId",
+									"value": "Insert config id",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{Protocol}}://{{Server}}/{{Endpoint}}/rest/v1/Report/ImportStandardReport",
+							"protocol": "{{Protocol}}",
+							"host": [
+								"{{Server}}"
+							],
+							"path": [
+								"{{Endpoint}}",
+								"rest",
+								"v1",
+								"Report",
+								"ImportStandardReport"
+							]
+						},
+						"description": "Creates a new scan in the scan history or updates the report for the specified scan"
+					},
+					"response": []
+				},
+				{
+					"name": "/Report/ImportCheckmarxReport",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic {{Token}}"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "scanId",
+									"value": "insert scan id",
+									"type": "text"
+								},
+								{
+									"key": "file",
+									"value": "",
+									"type": "file"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{Protocol}}://{{Server}}/{{Endpoint}}/rest/v1/Report/ImportCheckmarxReport",
+							"protocol": "{{Protocol}}",
+							"host": [
+								"{{Server}}"
+							],
+							"path": [
+								"{{Endpoint}}",
+								"rest",
+								"v1",
+								"Report",
+								"ImportCheckmarxReport"
+							]
+						},
+						"description": "Uploads checkmarx report"
+					},
+					"response": []
+				},
+				{
+					"name": "/Report/GetReportZip",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic {{Token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{Protocol}}://{{Server}}/{{Endpoint}}/rest/v1/Report/GetReportZip?scanId=insert scan id",
+							"protocol": "{{Protocol}}",
+							"host": [
+								"{{Server}}"
+							],
+							"path": [
+								"{{Endpoint}}",
+								"rest",
+								"v1",
+								"Report",
+								"GetReportZip"
+							],
+							"query": [
+								{
+									"key": "scanId",
+									"value": "insert scan id",
+									"equals": true
+								}
+							]
+						},
+						"description": "Gets ReportAllFiles.zip for the scan. Only scans in Completed and Stopped states may have a report"
+					},
+					"response": []
+				},
+				{
+					"name": "/Report/GetVulnerabilitiesSummaryXml",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic {{Token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{Protocol}}://{{Server}}/{{Endpoint}}/rest/v1/Report/GetVulnerabilitiesSummaryXml?scanId=insert scan id",
+							"protocol": "{{Protocol}}",
+							"host": [
+								"{{Server}}"
+							],
+							"path": [
+								"{{Endpoint}}",
+								"rest",
+								"v1",
+								"Report",
+								"GetVulnerabilitiesSummaryXml"
+							],
+							"query": [
+								{
+									"key": "scanId",
+									"value": "insert scan id",
+									"equals": true
+								}
+							]
+						},
+						"description": "Gets VulnerabilitiesSummary.xml for the scan. Only scans in the Completed and Stopped states may have a report"
+					},
+					"response": []
+				},
+				{
+					"name": "/Report/GetCrawledLinksXml",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic {{Token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{Protocol}}://{{Server}}/{{Endpoint}}/rest/v1/Report/GetCrawledLinksXml?scanid=insert scan id",
+							"protocol": "{{Protocol}}",
+							"host": [
+								"{{Server}}"
+							],
+							"path": [
+								"{{Endpoint}}",
+								"rest",
+								"v1",
+								"Report",
+								"GetCrawledLinksXml"
+							],
+							"query": [
+								{
+									"key": "scanid",
+									"value": "insert scan id",
+									"equals": true
+								}
+							]
+						},
+						"description": "Gets CrawledLinks.xml for the scan. Only scans in Completed and Stopped states may have report.\r\n"
+					},
+					"response": []
+				},
+				{
+					"name": "/Scan/GetVulnerabilitiesXml",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic {{Token}}"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "scanid",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{Protocol}}://{{Server}}/{{Endpoint}}/rest/v1/Report/GetVulnerabilitiesXml?scanid=Insert scan id",
+							"protocol": "{{Protocol}}",
+							"host": [
+								"{{Server}}"
+							],
+							"path": [
+								"{{Endpoint}}",
+								"rest",
+								"v1",
+								"Report",
+								"GetVulnerabilitiesXml"
+							],
+							"query": [
+								{
+									"key": "scanid",
+									"value": "Insert scan id",
+									"equals": true
+								}
+							]
+						},
+						"description": "Gets Vulnerabilities.xml for the scan. Only scans in Completed and Stopped states may have report.\r\n"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "8-Scheduled Scan Management",
+			"description": "This section describes API methods for managing scheduled scans. Note that the user should have \"Scan Runner\" permissions to work with scheduled scans",
+			"item": [
+				{
+					"name": "/ScanSchedule/ScheduleScan",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic {{Token}}"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "configId",
+									"value": "insert config id",
+									"type": "text"
+								},
+								{
+									"key": "startTime",
+									"value": "Insert time (example: 2016-09-16T17:00:00)",
+									"type": "text"
+								},
+								{
+									"key": "stopTime",
+									"value": "Insert time (example: 2016-09-17T18:00:00)",
+									"type": "text"
+								},
+								{
+									"key": "isRecurring",
+									"value": "false",
+									"type": "text"
+								},
+								{
+									"key": "recurrence",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{Protocol}}://{{Server}}/{{Endpoint}}/rest/v1/ScanSchedule/ScheduleScan",
+							"protocol": "{{Protocol}}",
+							"host": [
+								"{{Server}}"
+							],
+							"path": [
+								"{{Endpoint}}",
+								"rest",
+								"v1",
+								"ScanSchedule",
+								"ScheduleScan"
+							]
+						},
+						"description": "Schedules a scan"
+					},
+					"response": []
+				},
+				{
+					"name": "/ScanSchedule/DeleteScanSchedules",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic {{Token}}"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "scheduleIds",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{Protocol}}://{{Server}}/{{Endpoint}}/rest/v1/ScanSchedule/DeleteScanSchedules",
+							"protocol": "{{Protocol}}",
+							"host": [
+								"{{Server}}"
+							],
+							"path": [
+								"{{Endpoint}}",
+								"rest",
+								"v1",
+								"ScanSchedule",
+								"DeleteScanSchedules"
+							]
+						},
+						"description": "Deletes a scheduled scan from a client"
+					},
+					"response": []
+				},
+				{
+					"name": "/ScanSchedule/GetScanSchedules",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic {{Token}}"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "configid",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "startTime",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "stopTime",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{Protocol}}://{{Server}}/{{Endpoint}}/rest/v1/ScanSchedule/GetScanSchedules",
+							"protocol": "{{Protocol}}",
+							"host": [
+								"{{Server}}"
+							],
+							"path": [
+								"{{Endpoint}}",
+								"rest",
+								"v1",
+								"ScanSchedule",
+								"GetScanSchedules"
+							]
+						},
+						"description": "Retrieves a list of scheduled scans for the client"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "9-Findings Management",
+			"description": "This section describes API methods for managing scan results. Note that the user should have \"Vulnerbalities Manager\" and \"Report Manager\" permissions to work with reports and vulnerabilities.",
+			"item": [
+				{
+					"name": "/Finding/GetVulnerabilities",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic {{Token}}"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "configid",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "startTime",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "stopTime",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{Protocol}}://{{Server}}/{{Endpoint}}/rest/v1/Finding/GetVulnerabilities",
+							"protocol": "{{Protocol}}",
+							"host": [
+								"{{Server}}"
+							],
+							"path": [
+								"{{Endpoint}}",
+								"rest",
+								"v1",
+								"Finding",
+								"GetVulnerabilities"
+							]
+						},
+						"description": "Retrieves the list of vulnerabilities filtered by the specific parameters"
+					},
+					"response": []
+				},
+				{
+					"name": "/Finding/GetVulnerabilities?page=0&pageSize=250",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic Og=="
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{Protocol}}://{{Server}}/{{Endpoint}}/rest/v1/Finding/GetVulnerabilities?page=0&pageSize=250",
+							"protocol": "{{Protocol}}",
+							"host": [
+								"{{Server}}"
+							],
+							"path": [
+								"{{Endpoint}}",
+								"rest",
+								"v1",
+								"Finding",
+								"GetVulnerabilities"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "0",
+									"equals": true
+								},
+								{
+									"key": "pageSize",
+									"value": "250",
+									"equals": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "10-Client Operations",
+			"item": [
+				{
+					"name": "/Client/GetClients",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic {{Token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{Protocol}}://{{Server}}/{{Endpoint}}/rest/v1/Client/GetClients",
+							"protocol": "{{Protocol}}",
+							"host": [
+								"{{Server}}"
+							],
+							"path": [
+								"{{Endpoint}}",
+								"rest",
+								"v1",
+								"Client",
+								"GetClients"
+							]
+						},
+						"description": "Returns a list of clients associated with the current user"
+					},
+					"response": []
+				},
+				{
+					"name": "/Client/GetClient",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic {{Token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{Protocol}}://{{Server}}/{{Endpoint}}/rest/v1/Client/GetClient?clientName=insert clientname",
+							"protocol": "{{Protocol}}",
+							"host": [
+								"{{Server}}"
+							],
+							"path": [
+								"{{Endpoint}}",
+								"rest",
+								"v1",
+								"Client",
+								"GetClient"
+							],
+							"query": [
+								{
+									"key": "clientName",
+									"value": "insert clientname",
+									"equals": true
+								}
+							]
+						},
+						"description": "Gets a client info by client name"
+					},
+					"response": []
+				},
+				{
+					"name": "/Client/GetClient",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic {{Token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{Protocol}}://{{Server}}/{{Endpoint}}/rest/v1/Client/GetClient?clientId=insert clientid",
+							"protocol": "{{Protocol}}",
+							"host": [
+								"{{Server}}"
+							],
+							"path": [
+								"{{Endpoint}}",
+								"rest",
+								"v1",
+								"Client",
+								"GetClient"
+							],
+							"query": [
+								{
+									"key": "clientId",
+									"value": "insert clientid",
+									"equals": true
+								}
+							]
+						},
+						"description": "Gets a client info by client name"
+					},
+					"response": []
+				},
+				{
+					"name": "/Client/GetAccounts",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic {{Token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{Protocol}}://{{Server}}/{{Endpoint}}/rest/v1/Client/GetAccounts?clientId=insert clientid",
+							"protocol": "{{Protocol}}",
+							"host": [
+								"{{Server}}"
+							],
+							"path": [
+								"{{Endpoint}}",
+								"rest",
+								"v1",
+								"Client",
+								"GetAccounts"
+							],
+							"query": [
+								{
+									"key": "clientId",
+									"value": "insert clientid",
+									"equals": true
+								}
+							]
+						},
+						"description": "Gets a client info by client name"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "11-Role Operations",
+			"item": [
+				{
+					"name": "/Role/Roles",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic {{Token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{Protocol}}://{{Server}}/{{Endpoint}}/rest/v1/Role/GetRoles",
+							"protocol": "{{Protocol}}",
+							"host": [
+								"{{Server}}"
+							],
+							"path": [
+								"{{Endpoint}}",
+								"rest",
+								"v1",
+								"Role",
+								"GetRoles"
+							]
+						},
+						"description": "Gets role info"
+					},
+					"response": []
+				},
+				{
+					"name": "/Role/GetRoleByName",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic {{Token}}"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "{{Protocol}}://{{Server}}/{{Endpoint}}/rest/v1/Role/GetRole?roleName=<insertRoleName>",
+							"protocol": "{{Protocol}}",
+							"host": [
+								"{{Server}}"
+							],
+							"path": [
+								"{{Endpoint}}",
+								"rest",
+								"v1",
+								"Role",
+								"GetRole"
+							],
+							"query": [
+								{
+									"key": "roleName",
+									"value": "<insertRoleName>",
+									"equals": true
+								}
+							]
+						},
+						"description": "Gets role info by role name"
+					},
+					"response": []
+				},
+				{
+					"name": "/Role/GetRoleById",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic {{Token}}"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "{{Protocol}}://{{Server}}/{{Endpoint}}/rest/v1/Role/GetRole?roleId=<insertRoleId>",
+							"protocol": "{{Protocol}}",
+							"host": [
+								"{{Server}}"
+							],
+							"path": [
+								"{{Endpoint}}",
+								"rest",
+								"v1",
+								"Role",
+								"GetRole"
+							],
+							"query": [
+								{
+									"key": "roleId",
+									"value": "<insertRoleId>",
+									"equals": true
+								}
+							]
+						},
+						"description": "Gets role info by role name"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "12-Group Operations",
+			"item": [
+				{
+					"name": "/Group/AddGroup",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Basic {{Token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n \"Accounts\": [\n    {\n      \"UserId\": \"\",\n      \"UserName\": \"\",\n      \"ClientId\": \"\"\n    }\n  ],\n  \"Roles\": [\n        {\n            \"RoleId\": \"\",\n            \"RoleName\": \"\"\n        },\n        {\n            \"RoleId\": \"\",\n            \"RoleName\": \"\"\n        }\n    ],\n  \"GroupName\": \"\",\n  \"ClientId\": \"\"\n}"
+						},
+						"url": {
+							"raw": "{{Protocol}}://{{Server}}/{{Endpoint}}/rest/v1/Group/AddGroup",
+							"protocol": "{{Protocol}}",
+							"host": [
+								"{{Server}}"
+							],
+							"path": [
+								"{{Endpoint}}",
+								"rest",
+								"v1",
+								"Group",
+								"AddGroup"
+							]
+						},
+						"description": "Creates a group"
+					},
+					"response": []
+				},
+				{
+					"name": "/Group/UpdateGroup",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Basic {{Token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n \"Accounts\": [\n    {\n      \"UserId\": \"\",\n      \"UserName\": \"\",\n      \"ClientId\": \"\"\n    }\n  ],\n  \"Roles\": [\n        {\n            \"RoleId\": \"\",\n            \"RoleName\": \"\"\n        },\n        {\n            \"RoleId\": \"\",\n            \"RoleName\": \"\"\n        }\n    ],\n  \"GroupName\": \"\",\n  \"ClientId\": \"\"\n}"
+						},
+						"url": {
+							"raw": "{{Protocol}}://{{Server}}/{{Endpoint}}/rest/v1/Group/UpdateGroup?groupId=insert groupid",
+							"protocol": "{{Protocol}}",
+							"host": [
+								"{{Server}}"
+							],
+							"path": [
+								"{{Endpoint}}",
+								"rest",
+								"v1",
+								"Group",
+								"UpdateGroup"
+							],
+							"query": [
+								{
+									"key": "groupId",
+									"value": "insert groupid",
+									"equals": true
+								}
+							]
+						},
+						"description": "Update an existing group"
+					},
+					"response": []
+				},
+				{
+					"name": "/Group/GetGroupById",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic {{Token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{Protocol}}://{{Server}}/{{Endpoint}}/rest/v1/Group/GetGroup?GroupId=insert groupid",
+							"protocol": "{{Protocol}}",
+							"host": [
+								"{{Server}}"
+							],
+							"path": [
+								"{{Endpoint}}",
+								"rest",
+								"v1",
+								"Group",
+								"GetGroup"
+							],
+							"query": [
+								{
+									"key": "GroupId",
+									"value": "insert groupid",
+									"equals": true
+								}
+							]
+						},
+						"description": "Get a group by groupId"
+					},
+					"response": []
+				},
+				{
+					"name": "/Group/GetGroupByName",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic {{Token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{Protocol}}://{{Server}}/{{Endpoint}}/rest/v1/Group/GetGroup?GroupId=insert groupid",
+							"protocol": "{{Protocol}}",
+							"host": [
+								"{{Server}}"
+							],
+							"path": [
+								"{{Endpoint}}",
+								"rest",
+								"v1",
+								"Group",
+								"GetGroup"
+							],
+							"query": [
+								{
+									"key": "GroupId",
+									"value": "insert groupid",
+									"equals": true
+								}
+							]
+						},
+						"description": "Get a group by groupId"
+					},
+					"response": []
+				},
+				{
+					"name": "/Group/GetGroups",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic {{Token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{Protocol}}://{{Server}}/{{Endpoint}}/rest/v1/Group/GetGroups",
+							"protocol": "{{Protocol}}",
+							"host": [
+								"{{Server}}"
+							],
+							"path": [
+								"{{Endpoint}}",
+								"rest",
+								"v1",
+								"Group",
+								"GetGroups"
+							]
+						},
+						"description": "Get all groups"
+					},
+					"response": []
+				},
+				{
+					"name": "/Group/DeleteGroups",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Basic {{Token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{Protocol}}://{{Server}}/{{Endpoint}}/rest/v1/Group/DeleteGroup?groupId=insert groupid",
+							"protocol": "{{Protocol}}",
+							"host": [
+								"{{Server}}"
+							],
+							"path": [
+								"{{Endpoint}}",
+								"rest",
+								"v1",
+								"Group",
+								"DeleteGroup"
+							],
+							"query": [
+								{
+									"key": "groupId",
+									"value": "insert groupid",
+									"equals": true
+								}
+							]
+						},
+						"description": "Removes a group"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "13-Account Operations",
+			"item": [
+				{
+					"name": "/Account/AddAccount",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Basic {{Token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"Username\": \"\",\n  \"Password\": \"\",\n  \"FirstName\": \"\",\n  \"LastName\": \"\",\n  \"DefaultTimeZone\": \"UTC\",\n  \"Email\": \"\",\n  \"Enabled\": true,\n  \"Locked\": false,\n  \"External\": false,\n  \"Clients\": [\n    {\n      \"Roles\": [\n        {\n          \"RoleId\": \"\",\n          \"RoleName\": \"\"\n        }\n      ],\n      \"NotInRoles\": [\n        {\n          \"RoleId\": \"\",\n          \"RoleName\": \"\"\n        }\n      ],\n      \"Groups\": [\n      ],\n      \"ClientInfo\": {\n      \"ClientId\": \"\",\n      \"ClientName\": \"\"\n      }\n    },\n    {\n      \"Roles\": [\n        {\n          \"RoleId\": \"\",\n          \"RoleName\": \"\"\n        }\n      ],\n      \"NotInRoles\": [\n        {\n          \"RoleId\": \"\",\n          \"RoleName\": \"\"\n        }\n      ],\n      \"Groups\": [\n      ],\n      \"ClientInfo\": {\n      \"ClientId\": \"\",\n      \"ClientName\": \"\"\n      }\n    }\n  ]\n}"
+						},
+						"url": {
+							"raw": "{{Protocol}}://{{Server}}/{{Endpoint}}/rest/v1/Account/AddAccount",
+							"protocol": "{{Protocol}}",
+							"host": [
+								"{{Server}}"
+							],
+							"path": [
+								"{{Endpoint}}",
+								"rest",
+								"v1",
+								"Account",
+								"AddAccount"
+							]
+						},
+						"description": "Creates an account"
+					},
+					"response": []
+				},
+				{
+					"name": "/Account/GetAccount",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Basic {{Token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"Username\": \"UpdateUser\",\n  \"Password\": \"Password\",\n  \"FirstName\": \"UpdateUser\",\n  \"LastName\": \"UpdateUser\",\n  \"DefaultTimeZone\": \"UTC\",\n  \"Email\": \"Email4@email.com\",\n  \"Enabled\": true,\n  \"Locked\": false,\n  \"External\": false,\n  \"Clients\": [\n    {\n      \"Roles\": [\n        {\n          \"RoleId\": \"C4C6B6BB-5815-4C75-8F45-268662580538\",\n          \"RoleName\": \"SCANRUN\"\n        }\n      ],\n      \"NotInRoles\": [\n        {\n          \"RoleId\": \"9A21874F-5D5F-492C-96BD-4F030ED61111\",\n          \"RoleName\": \"REPORTVIEW\"\n        }\n      ],\n      \"Groups\": [\n        {\n          \"GroupId\": \"9F834ACF-28C1-4834-B62A-2AE97CBD4C9F\",\n          \"GroupName\": \"GroupABC1234\"\n        }\n      ],\n      \"ClientInfo\": {\n      \"ClientId\": \"9E41EEFA-18D0-41D7-B786-653B40A06F8D\",\n      \"ClientName\": \"webscantest\"\n      }\n    }\n  ]\n}"
+						},
+						"url": {
+							"raw": "{{Protocol}}://{{Server}}/{{Endpoint}}/rest/v1/Account/GetAccount?accountId=insert accountId",
+							"protocol": "{{Protocol}}",
+							"host": [
+								"{{Server}}"
+							],
+							"path": [
+								"{{Endpoint}}",
+								"rest",
+								"v1",
+								"Account",
+								"GetAccount"
+							],
+							"query": [
+								{
+									"key": "accountId",
+									"value": "insert accountId",
+									"equals": true
+								}
+							]
+						},
+						"description": "Get an account\n"
+					},
+					"response": []
+				},
+				{
+					"name": "/Account/UpdateAccount",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Basic {{Token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"Username\": \"\",\n  \"Password\": \"\",\n  \"FirstName\": \"\",\n  \"LastName\": \"\",\n  \"DefaultTimeZone\": \"UTC\",\n  \"Email\": \"\",\n  \"Enabled\": true,\n  \"Locked\": false,\n  \"External\": false,\n  \"Clients\": [\n    {\n      \"Roles\": [\n        {\n          \"RoleId\": \"\",\n          \"RoleName\": \"\"\n        }\n      ],\n      \"NotInRoles\": [\n        {\n          \"RoleId\": \"\",\n          \"RoleName\": \"\"\n        }\n      ],\n      \"Groups\": [\n      ],\n      \"ClientInfo\": {\n      \"ClientId\": \"\",\n      \"ClientName\": \"\"\n      }\n    },\n    {\n      \"Roles\": [\n        {\n          \"RoleId\": \"\",\n          \"RoleName\": \"\"\n        }\n      ],\n      \"NotInRoles\": [\n        {\n          \"RoleId\": \"\",\n          \"RoleName\": \"\"\n        }\n      ],\n      \"Groups\": [\n      ],\n      \"ClientInfo\": {\n      \"ClientId\": \"\",\n      \"ClientName\": \"\"\n      }\n    }\n  ]\n}"
+						},
+						"url": {
+							"raw": "{{Protocol}}://{{Server}}/{{Endpoint}}/rest/v1/Account/UpdateAccount?accountId=insert accountId",
+							"protocol": "{{Protocol}}",
+							"host": [
+								"{{Server}}"
+							],
+							"path": [
+								"{{Endpoint}}",
+								"rest",
+								"v1",
+								"Account",
+								"UpdateAccount"
+							],
+							"query": [
+								{
+									"key": "accountId",
+									"value": "insert accountId",
+									"equals": true
+								}
+							]
+						},
+						"description": "Update an existing account"
+					},
+					"response": []
+				},
+				{
+					"name": "/Account/DeleteAccount",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Basic {{Token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{Protocol}}://{{Server}}/{{Endpoint}}/rest/v1/Account/DeleteAccount?accountId=insert accountId",
+							"protocol": "{{Protocol}}",
+							"host": [
+								"{{Server}}"
+							],
+							"path": [
+								"{{Endpoint}}",
+								"rest",
+								"v1",
+								"Account",
+								"DeleteAccount"
+							],
+							"query": [
+								{
+									"key": "accountId",
+									"value": "insert accountId",
+									"equals": true
+								}
+							]
+						},
+						"description": "Removes an account"
+					},
+					"response": []
+				},
+				{
+					"name": "/Account/GetClients",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Basic {{Token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"Username\": \"UpdateUser\",\n  \"Password\": \"Password\",\n  \"FirstName\": \"UpdateUser\",\n  \"LastName\": \"UpdateUser\",\n  \"DefaultTimeZone\": \"UTC\",\n  \"Email\": \"Email4@email.com\",\n  \"Enabled\": true,\n  \"Locked\": false,\n  \"External\": false,\n  \"Clients\": [\n    {\n      \"Roles\": [\n        {\n          \"RoleId\": \"C4C6B6BB-5815-4C75-8F45-268662580538\",\n          \"RoleName\": \"SCANRUN\"\n        }\n      ],\n      \"NotInRoles\": [\n        {\n          \"RoleId\": \"9A21874F-5D5F-492C-96BD-4F030ED61111\",\n          \"RoleName\": \"REPORTVIEW\"\n        }\n      ],\n      \"Groups\": [\n        {\n          \"GroupId\": \"9F834ACF-28C1-4834-B62A-2AE97CBD4C9F\",\n          \"GroupName\": \"GroupABC1234\"\n        }\n      ],\n      \"ClientInfo\": {\n      \"ClientId\": \"9E41EEFA-18D0-41D7-B786-653B40A06F8D\",\n      \"ClientName\": \"webscantest\"\n      }\n    }\n  ]\n}"
+						},
+						"url": {
+							"raw": "{{Protocol}}://{{Server}}/{{Endpoint}}/rest/v1/Account/GetClients?accountId=insert accountId",
+							"protocol": "{{Protocol}}",
+							"host": [
+								"{{Server}}"
+							],
+							"path": [
+								"{{Endpoint}}",
+								"rest",
+								"v1",
+								"Account",
+								"GetClients"
+							],
+							"query": [
+								{
+									"key": "accountId",
+									"value": "insert accountId",
+									"equals": true
+								}
+							]
+						},
+						"description": "Gets client associated with an account"
+					},
+					"response": []
+				},
+				{
+					"name": "/Account/UpdateClients",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Basic {{Token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"Clients\": [\n    {\n      \"Roles\": [\n        {\n          \"RoleId\": \"\",\n          \"RoleName\": \"\"\n        }\n      ],\n      \"NotInRoles\": [\n        {\n          \"RoleId\": \"\",\n          \"RoleName\": \"\"\n        }\n      ],\n      \"Groups\": [],\n      \"ClientInfo\": {\n      \"ClientId\": \"\",\n      \"ClientName\": \"\"\n      }\n    }\n  ]\n}"
+						},
+						"url": {
+							"raw": "{{Protocol}}://{{Server}}/{{Endpoint}}/rest/v1/Account/UpdateClients?accountId=insert accountId",
+							"protocol": "{{Protocol}}",
+							"host": [
+								"{{Server}}"
+							],
+							"path": [
+								"{{Endpoint}}",
+								"rest",
+								"v1",
+								"Account",
+								"UpdateClients"
+							],
+							"query": [
+								{
+									"key": "accountId",
+									"value": "insert accountId",
+									"equals": true
+								}
+							]
+						},
+						"description": "Updates existing client roles/groups attached to an account"
+					},
+					"response": []
+				},
+				{
+					"name": "/Account/AddClient",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Basic {{Token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"Clients\": [\n    {\n      \"Roles\": [\n        {\n          \"RoleId\": \"\",\n          \"RoleName\": \"\"\n        }\n      ],\n      \"NotInRoles\": [\n        {\n          \"RoleId\": \"\",\n          \"RoleName\": \"\"\n        }\n      ],\n      \"Groups\": [],\n      \"ClientInfo\": {\n      \"ClientId\": \"\",\n      \"ClientName\": \"\"\n      }\n    }\n  ]\n}"
+						},
+						"url": {
+							"raw": "{{Protocol}}://{{Server}}/{{Endpoint}}/rest/v1/Account/AddClients?accountId=insert accountId",
+							"protocol": "{{Protocol}}",
+							"host": [
+								"{{Server}}"
+							],
+							"path": [
+								"{{Endpoint}}",
+								"rest",
+								"v1",
+								"Account",
+								"AddClients"
+							],
+							"query": [
+								{
+									"key": "accountId",
+									"value": "insert accountId",
+									"equals": true
+								}
+							]
+						},
+						"description": "Add a new client role/groups to an account"
+					},
+					"response": []
+				},
+				{
+					"name": "/Account/DeleteClients",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Basic {{Token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"ClientId\": \"\",\n  \"ClientName\": \"\"\n}"
+						},
+						"url": {
+							"raw": "{{Protocol}}://{{Server}}/{{Endpoint}}/rest/v1/Account/DeleteClients?accountId=insert accountId",
+							"protocol": "{{Protocol}}",
+							"host": [
+								"{{Server}}"
+							],
+							"path": [
+								"{{Endpoint}}",
+								"rest",
+								"v1",
+								"Account",
+								"DeleteClients"
+							],
+							"query": [
+								{
+									"key": "accountId",
+									"value": "insert accountId",
+									"equals": true
+								}
+							]
+						},
+						"description": "Removes a client from an account"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "14-SysAdmin Operations",
+			"item": [
+				{
+					"name": "/SysAdmin/AddAccount",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Basic {{Token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"UserName\": \"\",\n  \"Email\": \"\",\n  \"Password\": \"\",\n  \"FirstName\": \"\",\n  \"LastName\": \"\",\n  \"IsApproved\": true\n}"
+						},
+						"url": {
+							"raw": "{{Protocol}}://{{Server}}/{{Endpoint}}/rest/v1/SysAdmin/AddAccount",
+							"protocol": "{{Protocol}}",
+							"host": [
+								"{{Server}}"
+							],
+							"path": [
+								"{{Endpoint}}",
+								"rest",
+								"v1",
+								"SysAdmin",
+								"AddAccount"
+							]
+						},
+						"description": "Creates a new sysadmin"
+					},
+					"response": []
+				},
+				{
+					"name": "/SysAdmin/AddExistingAccount",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Basic {{Token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{Protocol}}://{{Server}}/{{Endpoint}}/rest/v1/SysAdmin/AddExistingAccount?userId=insert userid",
+							"protocol": "{{Protocol}}",
+							"host": [
+								"{{Server}}"
+							],
+							"path": [
+								"{{Endpoint}}",
+								"rest",
+								"v1",
+								"SysAdmin",
+								"AddExistingAccount"
+							],
+							"query": [
+								{
+									"key": "userId",
+									"value": "insert userid",
+									"equals": true
+								}
+							]
+						},
+						"description": "Migrates an existing user to sysadmin"
+					},
+					"response": []
+				},
+				{
+					"name": "/SysAdmin/DeleteAccount",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Basic {{Token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"UserName\": \"\",\n  \"Email\": \"\",\n  \"Password\": \"\",\n  \"FirstName\": \"\",\n  \"LastName\": \"\",\n  \"IsApproved\": true\n}"
+						},
+						"url": {
+							"raw": "{{Protocol}}://{{Server}}/{{Endpoint}}/rest/v1/SysAdmin/DeleteAccount?userId=insert userid",
+							"protocol": "{{Protocol}}",
+							"host": [
+								"{{Server}}"
+							],
+							"path": [
+								"{{Endpoint}}",
+								"rest",
+								"v1",
+								"SysAdmin",
+								"DeleteAccount"
+							],
+							"query": [
+								{
+									"key": "userId",
+									"value": "insert userid",
+									"equals": true
+								}
+							]
+						},
+						"description": "Removes a sysadmin"
+					},
+					"response": []
+				},
+				{
+					"name": "/SysAdmin/GetAccount",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Basic {{Token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"UserName\": \"ApiSysAdmin\",\n  \"Email\": \"ApiSysAdmin@rapid7.com\",\n  \"Password\": \"gaa9iXzu8)iXF\",\n  \"FirstName\": \"Api\",\n  \"LastName\": \"Sysadmin\",\n  \"IsApproved\": true\n}"
+						},
+						"url": {
+							"raw": "{{Protocol}}://{{Server}}/{{Endpoint}}/rest/v1/SysAdmin/GetAccount?userId=insert userid",
+							"protocol": "{{Protocol}}",
+							"host": [
+								"{{Server}}"
+							],
+							"path": [
+								"{{Endpoint}}",
+								"rest",
+								"v1",
+								"SysAdmin",
+								"GetAccount"
+							],
+							"query": [
+								{
+									"key": "userId",
+									"value": "insert userid",
+									"equals": true
+								}
+							]
+						},
+						"description": "Gets a sysadmin account by accountId"
+					},
+					"response": []
+				},
+				{
+					"name": "/SysAdmin/UpdateAccount",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Basic {{Token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"UserName\": \"\",\n  \"Email\": \"\",\n  \"Password\": \"\",\n sd \"FirstName\": \"\",\n  \"LastName\": \"\",\n  \"IsApproved\": true\n}"
+						},
+						"url": {
+							"raw": "{{Protocol}}://{{Server}}/{{Endpoint}}/rest/v1/SysAdmin/UpdateAccount?userId=insert userid",
+							"protocol": "{{Protocol}}",
+							"host": [
+								"{{Server}}"
+							],
+							"path": [
+								"{{Endpoint}}",
+								"rest",
+								"v1",
+								"SysAdmin",
+								"UpdateAccount"
+							],
+							"query": [
+								{
+									"key": "userId",
+									"value": "insert userid",
+									"equals": true
+								}
+							]
+						},
+						"description": "Updates an existing sysadmin account"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

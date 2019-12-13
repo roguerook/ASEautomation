@@ -1,0 +1,6 @@
+{
+    "Token": null,
+    "IsSuccess": false,
+    "Reason": "InvalidCredentials",
+    "ErrorMessage": "Invalid username or password."
+}
