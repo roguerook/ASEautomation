@@ -1,6 +1,6 @@
 # AppSpider Enterprise (ASE) Scripted Scan Automation
 _Rob Hunter - 2019_
-_Collector of Data, Distiller of Knowledge, Curator of Truth, and Protector following my own path_
+_Collector - Distiller - Curator_
 _Fueled by: B3 (bacon, bourbon, and b...)_
 
 Problem:  Rapid7's jenkins-appspider plugin for Jenkins will not run on Windows implementations - confirmed through Rapid7 Support.
