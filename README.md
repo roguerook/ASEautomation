@@ -1,11 +1,16 @@
 # AppSpider Enterprise (ASE) Scripted Scan Automation
 _Rob Hunter - 2019_
-_Collector - Builder - Distiller - Breaker - Curator_
+
+> _Seeker - Builder - Distiller - Breaker - Curator_
 
 Problem:  Rapid7's jenkins-appspider plugin for Jenkins will not run on Windows implementations - confirmed through Rapid7 Support.
 
 ### Project Overview:  
 Call scripts from Jenkins instance, that reachs out to ASE’s API, that then requests ASE scan engine(s), location and number depending upon architecture, to perform the application vulnerability scan and return various reports (xml, zip, crawled links, etc.).
+
+### Primary Scripts
+* ase_master.sh
+* webscantest_config.sh
 
 ### Project Future State:  
 Create further automation scripts that: 
